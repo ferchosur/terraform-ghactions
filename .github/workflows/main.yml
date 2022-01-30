@@ -25,17 +25,17 @@ jobs:
       ARM_TENANT_ID: 'a271c543-a269-4fe0-a929-8036ded23729'
       ARM_CLIENT_ID: 'f4524f6e-0b4a-4872-adea-43b7e045d52e'
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      AZURE_STORAGE: ' terraformdemo987876234'
+      AZURE_STORAGE: 'terraformdemo987876234'
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Azure Login
-        uses: Azure/login@v1.4.3
+        uses: Azure/login@v1
         with:
           # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-          creds: ${{ secrets.AZURE_CREDENTIALS }}# optional
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # optional
       # Runs a single command using the runners shell
       - name: Build Terraform State
         run: chmod +x ./tfstate.sh && ./tfstate.sh ${{ env. AZURE_STORAGE }}
