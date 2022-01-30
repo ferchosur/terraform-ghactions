@@ -35,7 +35,7 @@ jobs:
         uses: Azure/login@v1.4.3
         with:
           # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-          creds: ${{ secret.AZURE_CREDENTIALS }}# optional
+          creds: ${{ secrets.AZURE_CREDENTIALS }}# optional
       # Runs a single command using the runners shell
       - name: Build Terraform State
         run: chmod +x ./tfstate.sh && ./tfstate.sh ${{ env. AZURE_STORAGE }}
